@@ -27,7 +27,7 @@ A fun and interactive card memory game built with HTML, CSS, and JavaScript. Tes
 
 ## Demo 🚀
 
-Check out the live version of the project [here]((https://radiant-choux-6d16a9.netlify.app)). 🌐
+Check out the live version of the project [here](https://radiant-choux-6d16a9.netlify.app). 🌐
 
 ---
 
