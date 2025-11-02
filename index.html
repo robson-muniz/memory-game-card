@@ -4,147 +4,32 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Memory Game | JavaScript</title>
+    <meta
+      name="description"
+      content="Play an accessible, production-ready memory matching game built with React."
+    />
+    <meta name="theme-color" content="#2f80ed" />
+    <title>Memory Match | React</title>
     <link rel="stylesheet" href="style.css" />
-    <script defer src="app.js"></script>
     <!-- Icons -->
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    />
   </head>
 
   <body>
-    <div class="wrapper">
-      <ul class="cards">
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-1.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-2.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-3.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-4.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-5.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-6.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-7.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-8.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-1.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-2.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-3.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-4.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-5.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-6.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-7.png" alt="" />
-          </div>
-        </li>
-        <li class="card">
-          <div class="view front-view">
-            <span class="material-icons">question_mark</span>
-          </div>
-          <div class="view back-view">
-            <img src="img/img-8.png" alt="" />
-          </div>
-        </li>
-      </ul>
-    </div>
+    <div id="root"></div>
+
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel" src="app.js"></script>
   </body>
 </html>
