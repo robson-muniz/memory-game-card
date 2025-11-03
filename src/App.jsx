@@ -1,11 +1,26 @@
-import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react'; // ✅ Added React import
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 
 // ----------------------------------------
 // Utilities
 // ----------------------------------------
 
-// Update these dimensions if you want a different fixed board size.
-const BOARD_DIMENSIONS = Object.freeze({ rows: 4, columns: 4 });
+// Responsive board dimensions
+const getBoardDimensions = () => {
+    if (typeof window === 'undefined') {
+        return { rows: 4, columns: 4 };
+    }
+
+    const width = window.innerWidth;
+    if (width < 400) {
+        return { rows: 3, columns: 4 }; // 12 cards for very small screens
+    } else if (width < 500) {
+        return { rows: 4, columns: 4 }; // 16 cards for small screens
+    } else {
+        return { rows: 4, columns: 4 }; // 16 cards for larger screens
+    }
+};
+
+const BOARD_DIMENSIONS = Object.freeze(getBoardDimensions());
 const TOTAL_CARD_COUNT = BOARD_DIMENSIONS.rows * BOARD_DIMENSIONS.columns;
 const CARD_VALUES = Array.from({ length: TOTAL_CARD_COUNT / 2 }, (_, index) => index + 1);
 const BEST_RESULT_STORAGE_KEY = "memory-game-best-result";
@@ -190,6 +205,7 @@ const useThemePreference = () => {
 };
 
 const useMemoryGameState = () => {
+    const [boardDimensions, setBoardDimensions] = useState(() => getBoardDimensions());
     const [cards, setCards] = useState(() => createShuffledCards());
     const [flippedIndices, setFlippedIndices] = useState([]);
     const [isProcessing, setIsProcessing] = useState(false);
@@ -201,6 +217,21 @@ const useMemoryGameState = () => {
 
     const timeoutsRef = useRef([]);
     const timerRef = useRef(null);
+
+    // Update board dimensions on resize
+    useEffect(() => {
+        const handleResize = () => {
+            setBoardDimensions(getBoardDimensions());
+        };
+
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    // Recreate cards when board dimensions change
+    useEffect(() => {
+        resetGame();
+    }, [boardDimensions]);
 
     const clearScheduledActions = useCallback(() => {
         timeoutsRef.current.forEach((timeoutId) => clearTimeout(timeoutId));
@@ -425,6 +456,7 @@ const useMemoryGameState = () => {
         resetGame,
         isProcessing,
         handleCardImageError,
+        boardDimensions,
     };
 };
 
@@ -444,7 +476,7 @@ const ThemeToggleButton = ({ theme, onToggle }) => (
 const ResetButton = ({ onReset }) => (
     <button type="button" className="reset-button" onClick={onReset}>
         <span className="material-icons" aria-hidden="true">replay</span>
-        <span>Restart</span>
+        <span className="reset-text">Restart</span>
     </button>
 );
 
@@ -549,7 +581,7 @@ const CardGrid = ({
                       onCardClick,
                       isProcessing,
                       onImageError,
-                      columns = BOARD_DIMENSIONS.columns,
+                      columns = 4,
                   }) => (
     <ul
         className="cards"
@@ -569,6 +601,50 @@ const CardGrid = ({
     </ul>
 );
 
+// ----------------------------------------
+// Footer Component
+// ----------------------------------------
+
+const AppFooter = () => (
+    <footer className="app-footer">
+        <div className="footer-content">
+            <p className="footer-text">
+                &copy; {new Date().getFullYear()} Built by Robson Muniz
+            </p>
+            <div className="footer-links">
+                <a
+                    href="mailto:robson@example.com"
+                    className="footer-link"
+                    aria-label="Send email to Robson Muniz"
+                >
+                    <span className="material-icons" aria-hidden="true">email</span>
+                    <span className="footer-link-text">Email</span>
+                </a>
+                <a
+                    href="https://github.com/robsonmuniz"
+                    className="footer-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Visit Robson Muniz's GitHub profile"
+                >
+                    <span className="material-icons" aria-hidden="true">code</span>
+                    <span className="footer-link-text">GitHub</span>
+                </a>
+                <a
+                    href="https://linkedin.com/in/robsonmuniz"
+                    className="footer-link"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label="Visit Robson Muniz's LinkedIn profile"
+                >
+                    <span className="material-icons" aria-hidden="true">work</span>
+                    <span className="footer-link-text">LinkedIn</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+);
+
 const MemoryGame = () => {
     const {
         cards,
@@ -582,29 +658,33 @@ const MemoryGame = () => {
         resetGame,
         isProcessing,
         handleCardImageError,
+        boardDimensions,
     } = useMemoryGameState();
     const { theme, toggleTheme } = useThemePreference();
 
     return (
-        <main className="app" aria-label="Memory game">
-            <GameHeader theme={theme} onToggleTheme={toggleTheme} onReset={resetGame} />
-            <MetricsPanel
-                moves={moves}
-                secondsElapsed={secondsElapsed}
-                bestResult={bestResult}
-                accuracy={accuracy}
-            />
-            <StatusMessage message={statusMessage} />
-            <ProgressBar percent={progressPercent} />
-            <CardGrid
-                cards={cards}
-                onCardClick={handleCardClick}
-                isProcessing={isProcessing}
-                onImageError={handleCardImageError}
-                columns={BOARD_DIMENSIONS.columns}
-            />
-        </main>
+        <div className="app-container">
+            <main className="app" aria-label="Memory game">
+                <GameHeader theme={theme} onToggleTheme={toggleTheme} onReset={resetGame} />
+                <MetricsPanel
+                    moves={moves}
+                    secondsElapsed={secondsElapsed}
+                    bestResult={bestResult}
+                    accuracy={accuracy}
+                />
+                <StatusMessage message={statusMessage} />
+                <ProgressBar percent={progressPercent} />
+                <CardGrid
+                    cards={cards}
+                    onCardClick={handleCardClick}
+                    isProcessing={isProcessing}
+                    onImageError={handleCardImageError}
+                    columns={boardDimensions.columns}
+                />
+            </main>
+            <AppFooter />
+        </div>
     );
 };
 
-export default MemoryGame; // ✅ Added default export
+export default MemoryGame;

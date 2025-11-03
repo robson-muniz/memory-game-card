@@ -89,6 +89,18 @@ body::after {
     filter: blur(140px);
 }
 
+/* New container for centering */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    width: 100%;
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
 .app {
     position: relative;
     width: min(560px, 100%);
@@ -121,6 +133,66 @@ body::after {
     z-index: -1;
 }
 
+/* Footer Styles */
+.app-footer {
+    margin-top: auto;
+    padding: 1.5rem 0;
+    text-align: center;
+    color: var(--text-secondary);
+    width: 100%;
+    max-width: 560px;
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.footer-text {
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin: 0;
+}
+
+.footer-links {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    background: var(--surface);
+    border: 1px solid var(--border-subtle);
+}
+
+.footer-link:hover,
+.footer-link:focus-visible {
+    background: var(--accent-soft);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-soft);
+    color: var(--accent-strong);
+    text-decoration: none;
+}
+
+.footer-link .material-icons {
+    font-size: 1.1rem;
+}
+
+/* Rest of your existing CSS remains the same */
 .app__header {
     display: flex;
     align-items: center;
@@ -427,6 +499,15 @@ button {
     .metrics {
         grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
     }
+
+    .footer-links {
+        gap: 1rem;
+    }
+
+    .footer-link {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.8rem;
+    }
 }
 
 @media (max-width: 540px) {
@@ -448,6 +529,15 @@ button {
     .cards {
         gap: 0.65rem;
     }
+
+    .footer-content {
+        gap: 0.75rem;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }
 
 @media (max-width: 400px) {
@@ -457,6 +547,10 @@ button {
 
     .app {
         padding: 1.4rem;
+    }
+
+    .app-container {
+        gap: 1.5rem;
     }
 }
 
