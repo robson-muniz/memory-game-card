@@ -17,7 +17,7 @@ A beautiful, responsive memory card matching game built with React. Test your me
 
 ## 🚀 Live Demo
 
-[**Play the Live Demo**](https://your-deployed-app-link.vercel.app)
+[**Play the Live Demo**](https://memory-game-card-delta.vercel.app/)
 
 ## 🛠️ Installation
 
