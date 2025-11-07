@@ -1,4 +1,4 @@
-[# 🎮 Memory Match Game
+## 🎮 Memory Match Game
 
 A beautiful, responsive memory card matching game built with React. Test your memory and concentration by matching pairs of cards in the fewest moves and shortest time possible!
 
