@@ -1,10 +1,9 @@
-# 🎮 Memory Match Game
+[# 🎮 Memory Match Game
 
 A beautiful, responsive memory card matching game built with React. Test your memory and concentration by matching pairs of cards in the fewest moves and shortest time possible!
 
-![Memory Game Screenshot](<img width="591" height="948" alt="memory" src="https://github.com/user-attachments/assets/a0e52afd-1175-465e-bd7d-b661773b956a" />
-)
-*Screenshot of the Memory Match Game in action*
+[![Memory Game Screenshot](https://github.com/user-attachments/assets/a0e52afd-1175-465e-bd7d-b661773b956a)](https://memory-game-card-delta.vercel.app/)
+*Screenshot of the Memory Match Game in action.*
 
 ## ✨ Features
 
